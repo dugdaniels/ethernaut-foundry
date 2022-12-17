@@ -1,6 +1,10 @@
 [profile.default]
 src = 'src'
 out = 'out'
-libs = ['lib']
+libs = ['lib'] 
+chain_id = 11155111
+
+eth_rpc_url = 'https://sepolia.infura.io/v3/43a91ee4ee5c451ebdfceca66e3dae0b'
+etherscan_api_key = '${ETHERSCAN_API_KEY}'
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config
