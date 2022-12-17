@@ -10,7 +10,6 @@ contract Attacker is Test {
     function test() external {
         vm.startBroadcast();
 
-        level00.password();
         level00.authenticate(level00.password());
 
         vm.stopBroadcast();
