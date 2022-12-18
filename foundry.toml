@@ -2,6 +2,7 @@
 src = 'src'
 out = 'out'
 libs = ['lib'] 
+remappings = ['@openzeppelin=node_modules/@openzeppelin']
 chain_id = 11155111
 
 eth_rpc_url = 'https://sepolia.infura.io/v3/43a91ee4ee5c451ebdfceca66e3dae0b'
